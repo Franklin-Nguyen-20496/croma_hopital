@@ -1,0 +1,76 @@
+.header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 4.7rem;
+    width: 100%;
+    background-image: linear-gradient(to right, #00E4D6, #2FACD7);
+    margin-bottom: calc(5.5rem);
+    box-shadow: 0 12px 12px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+
+    &Container {
+        position: relative;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 4.7rem;
+    }
+
+    &Home {
+        position: absolute;
+        left: 0;
+        top: calc(4.7rem - 6.9rem/2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 6.9rem;
+        height: 6.9rem;
+        border: 50%;
+        background: #C4C4C4;
+        border: 5px solid #FFFFFF;
+        border-radius: 50%;
+        box-shadow: 0 12px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    &Navbar {
+        position: fixed;
+        top: 4.8rem;
+        right: -20rem;
+
+        max-height: calc(100vh - 4.7rem);
+        box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
+        // animation: navbar-slide 0.35s ease-out;
+        transition: all 0.3s ease-out;
+        transform: translateX(0);
+
+        &Container:not(:last-child) {
+            border-bottom: 1px solid #fff;
+        }
+
+        &Drop {
+            position: fixed;
+            background-color: rgba(0, 0, 0, 0.2);
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    }
+}
+
+.account {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+@keyframes navbar-slide {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}

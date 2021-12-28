@@ -1,0 +1,27 @@
+{
+    "bcrypt": {
+        "BCRYPT_SECRET": "bcrypt_secret",
+        "SALT_ROUNDS": 10
+    },
+    "db": {
+        "URI": "mongodb+srv://root:root@cluster0.efdlw.mongodb.net/croma",
+        "options": {
+            "autoIndex": true,
+            "useCreateIndex": true,
+            "useNewUrlParser": true,
+            "useUnifiedTopology": true
+        }
+    },
+    "jwt": {
+        "SECRET_KEY": "secret_key"
+    },
+    "password": "0363011503",
+    "role": {
+        "ADMIN": 1,
+        "DEAN": 2,
+        "DOCTOR": 3,
+        "NURSE": 4,
+        "COORDINATOR": 5,
+        "PATIENT": 6
+    }
+}

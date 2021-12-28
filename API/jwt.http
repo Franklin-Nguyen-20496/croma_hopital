@@ -1,0 +1,44 @@
+GET http://localhost:5000/users
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhvYW5nMDE2NjMwMTE1MDNAeWFob28uY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjM5MTM0NDA2LCJleHAiOjE2MzkxNDE2MDZ9.chPx5Cb7P1K-K4NnrvqFz44OVraDDIEr5WyC8hzDUjk
+
+###
+POST http://localhost:5000/users/create
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhvYW5nMDE2NjMwMTE1MDNAeWFob28uY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjM5MTM0NDA2LCJleHAiOjE2MzkxNDE2MDZ9.chPx5Cb7P1K-K4NnrvqFz44OVraDDIEr5WyC8hzDUjk",
+
+    "data": {
+        "name":"Nguyễn Tuấn Hoàng",
+        "email":"someone10@yahoo.com",
+        "password":"123456",
+        "age":1,
+        "address":"Quảng Nam",
+        "position":1,"role":"doctor"
+    }
+}
+
+### 
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+    "email": "hoang01663011503@yahoo.com",
+    "password": "0363011503"
+}
+
+###
+POST http://localhost:5000/auth/logout
+
+Content-Type: application/json
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhvYW5nMDE2NjMwMTE1MDNAeWFob28uY29tIiwicm9sZSI6MSwiaWF0IjoxNjQwMDc5MTk1LCJleHAiOjE2NDAxNjU1OTV9.rb2A_sRgZJKQ6WxkTmGTqeWpWQIftojNEoi-nym19Xo",
+}
+
+###
+POST http://localhost:5000/auth/refresh
+
+Content-Type: application/json
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhvYW5nMDE2NjMwMTE1MDNAeWFob28uY29tIiwicm9sZSI6MSwiaWF0IjoxNjQwMDc5MTk1LCJleHAiOjE2NDAxNjU1OTV9.rb2A_sRgZJKQ6WxkTmGTqeWpWQIftojNEoi-nym19Xo",
+}

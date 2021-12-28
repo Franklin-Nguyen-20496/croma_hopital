@@ -1,0 +1,14 @@
+@mixin itemCenter($direction: "center") {
+  display: flex;
+  flex-direction: column;
+  @if ($direction == "center") {
+    justify-content: center;
+    align-items: center;
+  }
+  @if ($direction == "left") {
+    justify-content: center;
+  }
+  @if ($direction == "top") {
+    align-items: center;
+  }
+}

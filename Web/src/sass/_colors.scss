@@ -1,0 +1,10 @@
+@use "sass:math";
+@each $key, $val in $topic_colors {
+  .text-#{$key} {
+    color: $val;
+  }
+
+  .bg-#{$key} {
+    background-color: $val;
+  }
+}

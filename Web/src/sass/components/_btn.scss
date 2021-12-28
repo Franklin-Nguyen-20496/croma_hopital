@@ -1,0 +1,125 @@
+@use "sass:math";
+
+@mixin btn($bg-color: #e2e2e2) {
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.btn {
+  @include btn;
+  @include itemCenter;
+}
+
+// btn click scale
+.btn-click {
+  // position: absolute;
+}
+
+@mixin active {
+  animation: active 0.3s ease-in !important;
+}
+
+@keyframes active {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.85);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.active {
+  @include active;
+}
+
+// btn slide hover
+.btn-slide {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.btn-slide::before {
+  content: " ";
+  display: block ;
+  background-color: #fff;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  width: calc(100% * 1.4);
+  height: 1rem;
+
+  transform: translateX(-100%) rotate(-60deg);
+  transition: all 0.5s ease-in-out;
+  z-index: 10;
+}
+
+.btn-slide:hover::before {
+  transform: translateX(0%) rotate(-60deg);
+  transition: all 0.5s ease-in-out;
+}
+
+// btn complete
+@each $key, $val in $topic_colors {
+  .btn-comp-#{$key} {
+    background-color: $val;
+    transition: all 0.25s ease-in;
+  }
+
+  .btn-comp-#{$key}:hover {
+    background-color: light-comp($val);
+    color: $topic;
+    transition: all 0.25s ease-in;
+  }
+}
+
+// btn-hover set background all completement
+@each $key, $val in $topic_colors {
+  .btn-hover-bg-#{$key}:hover {
+    background-color: light-comp($val);
+    transition: all 0.3s ease-out;
+  }
+}
+
+//btn hover set background in hover only 
+@each $key, $val in $topic_colors {
+  .btn-hover-#{$key}:hover {
+    background-color: $val;
+    transition: all 0.1s ease-out;
+  }
+}
+
+// btn-hover-scale
+.btn-hover-scale {
+  position: relative;
+  transform: scale(1);
+  transition: all 0.3s ease-out;
+}
+
+.btn-hover-scale:hover {
+  transform: scale(1.1);
+  transition: all 0.3s ease-out;
+}
+
+// btn hover light hight background
+
+@each $key, $val in $topic_colors {
+  .btn-light-bg-#{$key} {
+    transition: all 0.3s ease-out;
+    background-color: $val;
+
+    &:hover {
+      background-color: lighten($val, 7.5%);
+      transition: all 0.3s ease-out;
+    }
+  }
+}
+
+.btn-topic {
+  background-image: linear-gradient(to right, #00E4D7, #3A9FD8);
+}
+

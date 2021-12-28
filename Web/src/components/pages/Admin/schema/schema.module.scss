@@ -1,0 +1,33 @@
+
+
+.containerArrow {
+    position: relative;
+    height: 1.2rem;
+    z-index: 10;
+}
+
+.supArrow {
+    width: 3.6rem;
+    height: 0;
+    margin: auto;
+    position: relative;
+    transform: translateY(calc(3.6rem / 1.44 - 0.6rem));
+}
+
+.arrow {
+    position: relative;
+    width: 3.6rem;
+    height: 3.6rem;
+    transform: rotate(45deg) translateX( - 100%/2*1.44) translateY( - 100%/2*1.44);
+    animation: arrow 0.5s ease-in;
+    z-index: -10;
+}
+
+@keyframes arrow {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

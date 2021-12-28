@@ -1,0 +1,369 @@
+@use "sass:math";
+
+$utilities: (
+  "padding": (
+    "prefix": "p",
+    "values": (
+      "auto": auto,
+      "0": 0,
+      "1": $base-padding,
+      "2": $base-padding * 2,
+      "3": $base-padding * 4,
+      "4": $base-padding * 6.25,
+      "5": $base-padding * 10,
+    ),
+  ),
+  "padding-left": (
+    "prefix": "pl",
+    "values": (
+      "0": 0,
+      "1": $base-padding,
+      "2": $base-padding * 2,
+      "3": $base-padding * 4,
+      "4": $base-padding * 6.25,
+      "5": $base-padding * 10,
+    ),
+  ),
+  "padding-right": (
+    "prefix": "pr",
+    "values": (
+      "0": 0,
+      "1": $base-padding,
+      "2": $base-padding * 2,
+      "3": $base-padding * 4,
+      "4": $base-padding * 6.25,
+      "5": $base-padding * 10,
+    ),
+  ),
+  "padding-top": (
+    "prefix": "pt",
+    "values": (
+      "0": 0,
+      "1": $base-padding,
+      "2": $base-padding * 2,
+      "3": $base-padding * 4,
+      "4": $base-padding * 6.25,
+      "5": $base-padding * 10,
+    ),
+  ),
+  "padding-bottom": (
+    "prefix": "pb",
+    "values": (
+      "0": 0,
+      "1": $base-padding,
+      "2": $base-padding * 2,
+      "3": $base-padding * 4,
+      "4": $base-padding * 6.25,
+      "5": $base-padding * 10,
+    ),
+  ),
+  "margin": (
+    "prefix": "m",
+    "values": (
+      "auto": auto,
+      "0": 0,
+      "1": $base-padding,
+      "2": $base-padding * 2,
+      "3": $base-padding * 4,
+      "4": $base-padding * 6.25,
+      "5": $base-padding * 10,
+    ),
+  ),
+  "margin-left": (
+    "prefix": "ml",
+    "values": (
+      "0": 0,
+      "1": $base-padding,
+      "2": $base-padding * 2,
+      "3": $base-padding * 4,
+      "4": $base-padding * 6.25,
+      "5": $base-padding * 10,
+    ),
+  ),
+  "margin-right": (
+    "prefix": "mr",
+    "values": (
+      "0": 0,
+      "1": $base-padding,
+      "2": $base-padding * 2,
+      "3": $base-padding * 4,
+      "4": $base-padding * 6.25,
+      "5": $base-padding * 10,
+    ),
+  ),
+  "margin-top": (
+    "prefix": "mt",
+    "values": (
+      "0": 0,
+      "1": $base-padding,
+      "2": $base-padding * 2,
+      "3": $base-padding * 4,
+      "4": $base-padding * 6.25,
+      "5": $base-padding * 10,
+    ),
+  ),
+  "margin-bottom": (
+    "prefix": "mb",
+    "values": (
+      "0": 0,
+      "1": $base-padding,
+      "2": $base-padding * 2,
+      "3": $base-padding * 4,
+      "4": $base-padding * 6.25,
+      "5": $base-padding * 10,
+    ),
+  ),
+  "opacity": (
+    "prefix": "o",
+    "values": (
+      "0" : 0,
+      "10": 0.1,
+      "20": 0.2,
+      "30": 0.3,
+      "40": 0.4,
+      "50": 0.5,
+      "60": 0.6,
+      "70": 0.7,
+      "80": 0.8,
+      "90": 0.9,
+      "100": 1,
+    ),
+  ),
+  "border-radius": (
+    "prefix": "br",
+    "values": (
+      "0": 0,
+      "4": 4px,
+      "8": 8px,
+      "12": 12px,
+      "16": 16px,
+      "20": 20px,
+      "100": 100px,
+      "full": 50%,
+    ),
+  ),
+  "font-size": (
+    "prefix": "fs",
+    "values": (
+      "12": 1.2rem,
+      "14": 1.4rem,
+      "16": 1.6rem,
+      "18": 1.8rem,
+      "20": 2rem,
+      "24": 2.4rem,
+      "32": 3.2rem,
+      "36": 3.6rem,
+      "52": 5.2rem,
+      "64": 6.4rem,
+      "81": 8.1rem,
+    ),
+  ),
+  "font-weight": (
+    "prefix": "fw",
+    "values": (
+      "300": 300,
+      "400": 400,
+      "500": 500,
+      "600": 600,
+      "700": 700,
+    ),
+  ),
+  "line-height": (
+    "prefix": "lin-hei",
+    "values": (
+      "26": 26px,
+      "28": 28px,
+      "53": 53px,
+      "109": 109px,
+    ),
+  ),
+
+  "float": (
+    "prefix": "fl",
+    "values": (
+      "left": left,
+      "right": right,
+    ),
+  ),
+
+  "justify-content": (
+    "prefix": "justify-content",
+    "values": (
+      "start": flex-start,
+      "end": flex-end,
+      "center": center,
+    ),
+  ),
+
+  "align-items": (
+    "prefix": "align-items",
+    "values": (
+      "start": start,
+      "end": end,
+      "center": center,
+    ),
+  ),
+
+);
+
+$display: (
+  "display": (
+    "prefix": "d",
+    "values": (
+      "none": none,
+      "block": block,
+      "flex": flex,
+      "inline": inline,
+      "inline-block": inline-block,
+    ),
+  ),
+);
+
+@each $property, $map in $display {
+  $prefix: map-get($map, "prefix");
+  $values: map-get($map, "values");
+  @each $k, $v in $values {
+    @include default {
+      .#{$prefix}-#{$k} {
+        #{$property}: $v !important;
+      }
+    }
+  }
+}
+
+@each $property, $map in $display {
+  $prefix: map-get($map, "prefix");
+  $values: map-get($map, "values");
+  @each $k, $v in $values {
+    @include sm {
+      .#{$prefix}-sm-#{$k} {
+        #{$property}: $v !important;
+      }
+    }
+  }
+}
+
+@each $property, $map in $display {
+  $prefix: map-get($map, "prefix");
+  $values: map-get($map, "values");
+  @each $k, $v in $values {
+    @include md {
+      .#{$prefix}-md-#{$k} {
+        #{$property}: $v !important;
+      }
+    }
+  }
+}
+
+@each $property, $map in $display {
+  $prefix: map-get($map, "prefix");
+  $values: map-get($map, "values");
+  @each $k, $v in $values {
+    @include lg {
+      .#{$prefix}-lg-#{$k} {
+        #{$property}: $v !important;
+      }
+    }
+  }
+}
+
+@each $property, $map in $display {
+  $prefix: map-get($map, "prefix");
+  $values: map-get($map, "values");
+  @each $k, $v in $values {
+    @include xl {
+      .#{$prefix}-xl-#{$k} {
+        #{$property}: $v !important;
+      }
+    }
+  }
+}
+
+@each $property, $map in $display {
+  $prefix: map-get($map, "prefix");
+  $values: map-get($map, "values");
+  @each $k, $v in $values {
+    @include xxl {
+      .#{$prefix}-xxl-#{$k} {
+        #{$property}: $v !important;
+      }
+    }
+  }
+}
+
+@each $property, $map in $display {
+  $prefix: map-get($map, "prefix");
+  $values: map-get($map, "values");
+  @each $k, $v in $values {
+    @include xxxl {
+      .#{$prefix}-xxxl-#{$k} {
+        #{$property}: $v !important;
+      }
+    }
+  }
+}
+
+@each $property, $map in $utilities {
+  $prefix: map-get($map, "prefix");
+  $values: map-get($map, "values");
+  @each $k, $v in $values {
+    @if ($k == "default") {
+      .#{$prefix} {
+        #{$property}: $v;
+      }
+    } @else {
+      .#{$prefix}-#{$k} {
+        #{$property}: $v;
+      }
+    }
+  }
+}
+
+$font-size: map-get($utilities, "font-size");
+@each $key, $val in map-get($map: $font-size, $key: "values") {
+  @include sm {
+    .fs-sm-#{$key} {
+      font-size: $val;
+    }
+  }
+}
+
+@each $key, $val in map-get($map: $font-size, $key: "values") {
+  @include md {
+    .fs-md-#{$key} {
+      font-size: $val;
+    }
+  }
+}
+
+@each $key, $val in map-get($map: $font-size, $key: "values") {
+  @include lg {
+    .fs-lg-#{$key} {
+      font-size: $val;
+    }
+  }
+}
+
+@each $key, $val in map-get($map: $font-size, $key: "values") {
+  @include xl {
+    .fs-xl-#{$key} {
+      font-size: $val;
+    }
+  }
+}
+
+@each $key, $val in map-get($map: $font-size, $key: "values") {
+  @include xxl {
+    .fs-xxl-#{$key} {
+      font-size: $val;
+    }
+  }
+}
+
+@each $key, $val in map-get($map: $font-size, $key: "values") {
+  @include xxxl {
+    .fs-xxxl-#{$key} {
+      font-size: $val;
+    }
+  }
+}

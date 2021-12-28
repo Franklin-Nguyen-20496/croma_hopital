@@ -1,0 +1,64 @@
+input, select {
+    width: 100%;
+    height: 3.6rem;
+    padding-left: 12px;
+    padding-right: 12px;
+
+    background: #FFFFFF;
+    border: 1px solid #4FC5BE;
+    box-sizing: border-box;
+    border-radius: 50px;
+    font-size:1.5rem;
+    outline: none;
+}
+
+select {
+    padding-left: 10px;
+    -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 98%;
+  background-position-y: 5px;
+  line-height: 1.4;
+}
+
+.select-selected.select-arrow-active:after {
+    right: 1.2rem;
+}
+
+.container {
+    max-width: 48rem;
+    width: 100%;
+    margin: 0 auto;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+  input[type="file"]::before {
+    content: 'Select some files';
+    display: inline-block;
+    // background: linear-gradient(to bottom, #f9f9f9, #e3e3e3);
+    // border: 1px solid #4FC5BE;
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+  }
+  input[type="file"]:hover::before {
+    border-color: black;
+  }
+  input[type="file"]:active::before {
+    // background: -webkit-linear-gradient(to bottom, #e3e3e3, #f9f9f9);
+  }
+  
+  input[type="file"] {
+    cursor: pointer;
+  }

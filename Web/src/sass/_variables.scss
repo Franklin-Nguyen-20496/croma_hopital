@@ -1,0 +1,71 @@
+@use "sass:math";
+// theme color
+$textColor: #3b3735;
+$background: #fff;
+$primary: #326dee;
+$secondary: #1ac888;
+$error: #d32752;
+$info: #f6c31c;
+$topic: #2FACD7;
+$gray: #C4C4C4;
+$dark: #383838;
+$light: #d2d2d2;
+$pink: #ce98ee;
+$brown: #e7f5f3;
+
+// color palette
+$color: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "error": $error,
+  "info": $info,
+  "blue": #1919e6,
+  "red": #e61919,
+  "yellow": #e6e619,
+  "green": #19e635,
+  "orange": #ffb63b,
+  "purple": #9900ff,
+  "topic": $topic,
+  "pink": $pink,
+  "gray": #8d8d8d,
+  "dark": #3b3735,
+  "light": #d2d2d2,
+  "black": black,
+  "white": white,
+);
+
+// btn color button
+$topic_colors: (
+  "topic": $topic,
+  "comp-topic": complement($topic) ,
+  "gray": $gray,
+  "pink": $pink,
+  "dark": $dark,
+  "light": $light,
+  "brown": $brown,
+  "black": black,
+  "white": white,
+  "info": $info,
+  "error": $error,
+);
+
+// Spacing
+$base-padding: 0.8rem;
+$base-margin: 0.8rem;
+
+// Border
+$base-border-thickness: 1px;
+$base-border-radius: 4px;
+
+// base Border
+$base-border: $base-border-thickness solid $topic;
+
+// Box-shadow
+$base-box-shadow: 0px 8px 8px #888888;
+
+// font size
+$base-font-size: 1.5rem;
+
+// line height
+
+$base-line-height: 2.8rem;
