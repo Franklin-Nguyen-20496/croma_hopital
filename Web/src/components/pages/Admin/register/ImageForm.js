@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import PreviewImg from './PreviewImg';
 import actions from '../../../../redux/actions/';
 import Btn from '../../../common/Btn';
-const { addUser, notifyInfo } = actions;
+const { addUser, notifyInfo, hideNotify } = actions;
 
 const ImageForm = () => {
     const dispatch = useDispatch()
@@ -30,7 +30,7 @@ const ImageForm = () => {
                 .nullable(),
             name:
                 yup.string()
-                    .max(32, 'Quá dài, email tối đa là 32 ký tự')
+                    .max(32, 'Quá dài, họ tên tối đa là 32 ký tự')
                     .required('Bạn chưa nhập họ và tên!'),
             email:
                 yup.string()
@@ -82,9 +82,8 @@ const ImageForm = () => {
         },
         onSubmit: async (values, { resetForm }) => {
 
-            console.log(values);
+            // console.log(values);
             const { file, ...user } = values;
-            console.log(file, user);
 
             // read file image from element
             let bodyFormData = new FormData();
@@ -98,10 +97,10 @@ const ImageForm = () => {
             })
                 .then(res => {
                     console.log(res)
-                    const file = res.data;
+                    const newFile = res.data;
                     const newUser = {
                         ...user,
-                        file: file,
+                        file: newFile,
                     }
                     console.log('newUser', newUser);
                     axios({
@@ -113,14 +112,14 @@ const ImageForm = () => {
                         .then((response) => {
                             console.log('response', response);
                             dispatch(notifyInfo(`Tạo thành công tài khoản với email ${response.data.email}`));
-                            setTimeout(() => dispatch(notifyInfo('')), 4000);
+                            setTimeout(() => dispatch(hideNotify()), 4000);
                             resetForm();
                             dispatch(addUser(response.data));
                         })
                         .catch((error) => {
                             axios({
                                 method: 'delete',
-                                url: file,
+                                url: newFile,
                             })
                                 .then((response2) => {
                                     console.log('response in delete photo', response2);
@@ -260,8 +259,10 @@ const ImageForm = () => {
                         <div className="error fs-12">{formik.errors.role}</div>
                     ) : null}
                     <hr className="mb-2" />
+                    <div className="fl-right">
+                        <Btn type="submit" title="Tạo tài khoản" />
+                    </div>
 
-                    <Btn type="submit" title="Tạo tài khoản" />
                 </div>
             </form>
         </div>

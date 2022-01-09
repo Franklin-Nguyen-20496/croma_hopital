@@ -8,7 +8,7 @@ class Middleware {
         try {
             const authorizationHeader = req.headers['authorization'];
             if (authorizationHeader) {
-                console.log('authorization', authorizationHeader);
+                // console.log('authorization', authorizationHeader);
                 const tokenHeader = authorizationHeader.split(' ')[1];
                 if (!tokenHeader) {
                     res.locals.role = 6;

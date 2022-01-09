@@ -9,18 +9,18 @@ class AuthController {
 
     async login(value) {
         try {
-            const user = await db.users.findOne({ email: value.email })
+            const user = await db.users.findOne({ email: value.email });
             if (!user) return false;
             // if(!user || d) return null;
             console.log('user', user);
 
-            const compare = await bcrypt.compare(value.password, user.password)
+            const compare = await bcrypt.compare(value.password, user.password);
             console.log('compare', compare);
             if (!compare) {
                 return false;
             }
             const { email, role } = user;
-            const access_token = await jwtHelper.setToken({ email, role }, 60 * 30);
+            const access_token = await jwtHelper.setToken({ email, role }, '24h');
             const refresh_token = await jwtHelper.setToken({ email, role }, '24h');
             const login = await db.auths.create({ token: refresh_token });
             console.log(access_token, refresh_token, login);
@@ -55,7 +55,7 @@ class AuthController {
             console.log(err);
             return {
                 status: 401,
-                message: 'something wrong to auth controller'
+                message: 'something wrong to auth controller',
             }
         }
     }
@@ -75,7 +75,7 @@ class AuthController {
                         if (data) {
                             const user = await db.users.findOne({ email: data.email });
                             const { email, role } = data;
-                            const access_token = await jwtHelper.setToken({ email, role }, 60 * 30);
+                            const access_token = await jwtHelper.setToken({ email, role }, '24h');
                             const refresh_token = await jwtHelper.setToken({ email, role }, '24h');
                             await db.auths.create({ token: refresh_token });
                             console.log('access_token', access_token);

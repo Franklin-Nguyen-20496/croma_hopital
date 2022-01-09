@@ -7,8 +7,7 @@ import { useDispatch } from 'react-redux';
 
 import Btn from '../../common/Btn';
 import actions from '../../../redux/actions';
-const { notifyInfo, notifyError, setAccount } = actions;
-
+const { notifyInfo, notifyError, setAccount, hideNotify } = actions;
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -51,7 +50,7 @@ const LoginForm = () => {
                     axios.defaults.headers.common['Authorization'] = `bearer ${access_token}`;
                     dispatch(notifyInfo(`Bạn đã đăng nhập thành công email: ${data.email}`));
                     setTimeout(() => {
-                        dispatch(notifyInfo(''))
+                        dispatch(hideNotify())
                     }, 4000);
                     navigate('/');
                 })
@@ -59,7 +58,7 @@ const LoginForm = () => {
                     console.log('err', err);
                     dispatch(notifyError('Đăng nhập thất bại, email hoặc mật khẩu không đúng'));
                     setTimeout(() => {
-                        dispatch(notifyError(''))
+                        dispatch(hideNotify())
                     }, 4000)
                 });
         }
@@ -89,7 +88,6 @@ const LoginForm = () => {
                     id="password"
                     type="password"
                     placeholder="Mật khẩu"
-
                     {...formik.getFieldProps('password')}
                 />
                 {formik.touched.password && formik.errors.password ? (

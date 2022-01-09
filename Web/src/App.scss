@@ -36,6 +36,7 @@ select {
 
 input[type="file"]::-webkit-file-upload-button {
     visibility: hidden;
+    padding-top: 5px;
   }
   input[type="file"]::before {
     content: 'Select some files';
@@ -43,7 +44,7 @@ input[type="file"]::-webkit-file-upload-button {
     // background: linear-gradient(to bottom, #f9f9f9, #e3e3e3);
     // border: 1px solid #4FC5BE;
     border-radius: 3px;
-    padding: 5px 8px;
+    padding: 0px 8px;
     outline: none;
     white-space: nowrap;
     -webkit-user-select: none;
@@ -61,4 +62,46 @@ input[type="file"]::-webkit-file-upload-button {
   
   input[type="file"] {
     cursor: pointer;
+  }
+
+  input[type="checkbox"] {
+    cursor: pointer;
+    width: 2.4rem;
+    height: 2.4rem;
+    margin-left: 1.6rem;
+    border: 1px solid #4FC5BE !important;
+  }
+
+  iframe ::-webkit-scrollbar {
+    width: 16px;
+    background-color: white;
+  }
+  
+  iframe ::-webkit-scrollbar-track {
+    width: 16px;
+  }
+  
+  iframe ::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+    background-color: #909090;
+    width: 16px;
+    min-height: 56px;
+    border-radius: 8px;
+    border: 4px solid white;
+  }
+
+  .videoWrapper {
+    position: relative;
+    padding-bottom: calc(141.5% + 54px); /* 16:9 */
+    height: 0;
+    overflow: hidden;
+  }
+  .videoWrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 1200px !important;
+    overflow: hidden;
   }

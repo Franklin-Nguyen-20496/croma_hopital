@@ -1,5 +1,5 @@
 
-import { NOTIFY_INFO, NOTIFY_WARN, NOTIFY_ERROR } from '../types/notify.types';
+import { NOTIFY_INFO, NOTIFY_WARN, NOTIFY_ERROR, HIDE_NOTIFY } from '../types/notify.types';
 
 export const notifyInfo = (data) => {
     return {
@@ -19,5 +19,11 @@ export const notifyError = (data) => {
     return {
         type: NOTIFY_ERROR,
         payload: data,
+    }
+}
+
+export const hideNotify = () => {
+    return {
+        type: HIDE_NOTIFY,
     }
 }

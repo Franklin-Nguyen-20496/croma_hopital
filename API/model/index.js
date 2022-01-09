@@ -3,23 +3,17 @@ const mongoose = require('mongoose');
 const config = require('config');
 const userSchema = require('./schema/user.schema');
 const authSchema = require('./schema/auth.schema');
+const waitingPatientSchema = require('./schema/waitingPatient.schema');
+const patientSchema = require('./schema/patient.schema')
 
 class Db {
-    connect() {
-        mongoose.connect(config.get('db.URI'), config.get('db.options'), (err) => {
-            if (err) {
-                console.error('error in connect database', err);
-            }
-            else {
-                this.initModels();
-                this.initData();
-            }
-        });
-    }
+
     initModels() {
         console.log('Creating models');
         this.users = mongoose.model('user', userSchema);
         this.auths = mongoose.model('auth', authSchema);
+        this.waitingPatients = mongoose.model('waitingPatient', waitingPatientSchema);
+        this.patients = mongoose.model('patient', patientSchema)
         console.log('Model was created');
     }
 
@@ -56,6 +50,18 @@ class Db {
             throw new Error('Some thing wrong to create admin');
             console.log('err', err);
         }
+    }
+
+    connect() {
+        mongoose.connect(config.get('db.URI'), config.get('db.options'), (err) => {
+            if (err) {
+                console.error('error in connect database', err);
+            }
+            else {
+                this.initModels();
+                this.initData();
+            }
+        });
     }
 }
 

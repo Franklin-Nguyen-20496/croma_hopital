@@ -2,36 +2,33 @@
 const express = require('express');
 const router = express.Router();
 const config = require('config');
+const createClient = require('redis');
 
-const jwtHelper = require('../helpers/jwt.helper');
-const middleware = require('../helpers/middleware');
 const usersController = require('../controllers/users.controller');
 const upload = require('../helpers/upload');
+const jwtHelper = require('../helpers/jwt.helper');
+const middleware = require('../helpers/middleware');
 
 class Router {
     registerRouter() {
 
         router.get('/', async (req, res) => {
+
             // console.log('res.locals.role', res.locals.role);
-
-            return usersController.getAll()
-                .then((result) => {
-                    console.log('res.locals.role', res.locals.role)
-                    if (res.locals.role && res.locals.role === config.role.ADMIN) {
-                        // console.log('result', result);
-                        return res.status(200).json(result);
-                    }
-                    else {
-                        return res.status(401).json({
-                            message: 'token_not_valid'
-                        });
-                    }
-
-                })
-                .catch((error) => {
-                    console.error('error in get all users', error);
-                })
-
+            if (!res.locals.role) {
+                return res.status(401).json({ message: 'token_not_valid' });
+            } else
+                if (res.locals.role === config.role.ADMIN) {
+                    return usersController.getAll()
+                        .then(result => {
+                            // console.log(result)
+                            res.status(200).send(result);
+                        })
+                        .catch(err => console.log(err))
+                }
+                else {
+                    return res.status(403).json({ message: 'Forbidden' });
+                }
         })
 
         router.post('/create', (req, res) => {

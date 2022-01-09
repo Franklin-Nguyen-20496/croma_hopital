@@ -18,7 +18,7 @@
     position: relative;
     width: 3.6rem;
     height: 3.6rem;
-    transform: rotate(45deg) translateX( - 100%/2*1.44) translateY( - 100%/2*1.44);
+    transform: rotate(45deg) translateX( calc((-100%)/2*1.44)) translateY( calc((-100%)/2*1.44));
     animation: arrow 0.5s ease-in;
     z-index: -10;
 }

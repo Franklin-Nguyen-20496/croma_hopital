@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { } from 'react';
 // import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
@@ -9,14 +9,13 @@ const Notify = () => {
 
     console.log('render Notify components');
 
-    const { color, message } = useSelector(state => state.notify);
+    const { color, message, slide } = useSelector(state => state.notify);
 
     return (
         <div
             className={clsx(styles.notify, 'bg-white')}
             style={{
-                transition: 'all 0.8s ease-out',
-                transform: message ? 'translateX(calc(32rem))' : 'translateX(calc(-32rem))',
+                transform: slide ? 'translateX(calc(32rem))' : 'translateX(calc(-32rem))',
             }}
         >
             <h4

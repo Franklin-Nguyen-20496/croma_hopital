@@ -23,5 +23,12 @@
         "NURSE": 4,
         "COORDINATOR": 5,
         "PATIENT": 6
+    },
+    "port": 5000,
+    "clientSide": "http://localhost:3000",
+    "redis_port": 6379,
+    "redis_option": {
+        "EX": 300,
+        "NX": true
     }
 }

@@ -10,7 +10,7 @@ import { removeEmptyValues } from '../../../../helper/object';
 import PreviewUpdateImg from './PreviewUpdateImg';
 import Btn from '../../../common/Btn';
 import actions from '../../../../redux/actions';
-const { updateUser, notifyInfo, notifyWarn, setUpdateFalse } = actions;
+const { updateUser, notifyInfo, notifyWarn, setUpdateFalse, hideNotify } = actions;
 
 const UpdateUserForm = ({ user }) => {
 
@@ -105,7 +105,7 @@ const UpdateUserForm = ({ user }) => {
                             dispatch(updateUser({ ...user, ...newValues }));
                             dispatch(notifyInfo(`Chỉnh sửa thành công tài khoản`));
                             setTimeout(() => {
-                                dispatch(notifyInfo(''));
+                                dispatch(hideNotify());
                             }, 4000);
                             dispatch(setUpdateFalse());
                         })
@@ -151,7 +151,7 @@ const UpdateUserForm = ({ user }) => {
                                     console.log('response', response);
                                     dispatch(notifyInfo(`Chỉnh sửa thành công tài khoản`));
                                     setTimeout(() => {
-                                        dispatch(notifyInfo(''));
+                                        dispatch(hideNotify());
                                     }, 4000);
                                     dispatch(updateUser({ ...user, ...newUser2 }));
                                     dispatch(setUpdateFalse());

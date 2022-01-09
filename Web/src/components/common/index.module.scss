@@ -1,0 +1,34 @@
+.autoOutletPatients {
+    margin-left: 0;
+}
+.navigator {
+    display: none;
+}
+
+@media (min-width: 720px) {
+    .autoOutletPatients {
+        padding-left: 20rem;
+    }
+
+    .navigator {
+        display: block;
+    }
+}
+  
+@media (min-width: 1140px) {
+    .autoOutletPatients {
+        padding-left: 16rem;
+    }
+}
+
+@media (min-width: 1320px) {
+    .autoOutletPatients {
+        padding-left: 10rem;
+    }
+}
+
+@media (min-width: 1518px) {
+    .autoOutletPatients {
+        padding-left: 4rem;
+    }
+}

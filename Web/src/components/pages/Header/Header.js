@@ -52,6 +52,7 @@ const Header = () => {
                 dispatch(clearAccount());
                 dispatch(resetUsers());
                 dispatch(notifyInfo(res.data.message));
+                axios.defaults.headers.common['Authorization'] = 'bearer ';
                 setTimeout(() => {
                     dispatch(notifyInfo(''))
                 }, 4000)

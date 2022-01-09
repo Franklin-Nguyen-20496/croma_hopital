@@ -3,7 +3,7 @@ import React, { } from 'react';
 
 import ImageForm from './ImageForm';
 
-const Register = () => {
+const AdminRegister = () => {
 
     return (
         <div className="container">
@@ -14,4 +14,4 @@ const Register = () => {
     );
 }
 
-export default Register;
+export default AdminRegister;

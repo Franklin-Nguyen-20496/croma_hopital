@@ -8,27 +8,27 @@ const BtnIcon = forwardRef((props, ref) => {
     const [active, setActive] = useState('');
 
     return (
-        <div
-            style={{
-                width: '3.2rem',
-                height: '3.2rem',
-                backgroundColor: bgColor ? bgColor : '',
-                color: color ? color : '#FFFFFF',
-                cursor: 'pointer'
-            }}
-            className={clsx('btn-topic transition shadow item-center br-full shadow', active)}
-            onClick={() => {
-                setActive('active');
-                setTimeout(() => {
-                    setActive('');
-                }, 300)
-            }}
+        <div onClick={onClick}>
+            <div
+                style={{
+                    width: '3.2rem',
+                    height: '3.2rem',
+                    backgroundColor: bgColor ? bgColor : '',
+                    color: color ? color : '#FFFFFF',
+                    cursor: 'pointer'
+                }}
+                className={clsx('btn-topic transition shadow item-center br-full shadow', active)}
+                onClick={() => {
+                    setActive('active');
+                    setTimeout(() => {
+                        setActive('');
+                    }, 300)
+                }}
 
-            onClick={onClick}
-
-            ref={ref}
-        >
-            <FontAwesomeIcon icon={icon ? icon : faEllipsisH} />
+                ref={ref}
+            >
+                <FontAwesomeIcon icon={icon ? icon : faEllipsisH} />
+            </div>
         </div>
     );
 })
