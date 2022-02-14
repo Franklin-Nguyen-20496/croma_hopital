@@ -1,0 +1,3 @@
+# croma_hopital
+
+PROJECT USED REACTJS - MONGODB - REDUX - SOCKET.IO...
