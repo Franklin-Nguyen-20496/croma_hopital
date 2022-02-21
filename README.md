@@ -1,0 +1,3 @@
+# croma_hopital
+
+This project used nodeJS - express - ReactJS - Redux - Socket.io - MongoDB...
