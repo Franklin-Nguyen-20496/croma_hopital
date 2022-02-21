@@ -166,6 +166,7 @@ $utilities: (
       "16": 16px,
       "20": 20px,
       "32": 32px,
+      "50": 50px,
       "100": 100px,
       "full": 50%,
     ),
@@ -221,6 +222,8 @@ $utilities: (
       "start": flex-start,
       "end": flex-end,
       "center": center,
+      "space-between": space-between,
+      "space-evenly": space-evenly,
     ),
   ),
 
@@ -233,6 +236,15 @@ $utilities: (
     ),
   ),
 
+  "position": (
+    "prefix": "position",
+    "values": (
+      "relative": relative,
+      "absolute": absolute,
+      "fixed": fixed,
+    ),
+  ),
+  
 );
 
 $display: (

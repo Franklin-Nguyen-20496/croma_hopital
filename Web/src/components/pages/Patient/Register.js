@@ -37,8 +37,7 @@ const PatientRegister = () => {
             covid19: '',
         },
         validationSchema: yup.object().shape({
-            file: yup.mixed()
-                .nullable(),
+            file: yup.mixed(),
             name: yup.string()
                 .max(32, 'Quá dài tối đa 32 kí tự!')
                 .required('Bạn chưa nhập họ tên'),
@@ -52,21 +51,21 @@ const PatientRegister = () => {
                 .required('Vui lòng cho biết mức độ bệnh'),
             age: yup.number('Bạn chưa nhập tuổi')
                 .min(0, 'Tuổi không hợp lệ')
-                .max(117, 'Really? The oldest person in the world is 117 years old :))')
-                .nullable(),
-            gender: yup.number()
-                .nullable(),
-            antecedent: yup.string()
-                .nullable(),
-            covid19: yup.boolean()
-                .nullable(),
+                .max(117, 'Really? The oldest person in the world is 117 years old :))'),
+            gender: yup.number(),
+            antecedent: yup.string(),
+            covid19: yup.boolean(),
         }),
         validate: () => { },
         onSubmit: async (values, { resetForm }) => {
-            console.log(values)
+            console.log('values submit', values)
 
-            const { file, ...patient } = values;
-            console.log(file, patient);
+            const { file, age, gender, ...patient } = values;
+            const newValues = {
+                ...patient,
+                age: age ? age : 0,
+                gender: gender ? gender : 0,
+            }
 
             if (file) {
                 let bodyFormData = new FormData();
@@ -81,7 +80,7 @@ const PatientRegister = () => {
                     .then(res => {
                         console.log('res', res);
                         const newFile = res.data;
-                        const newPatient = { ...patient, file: newFile };
+                        const newPatient = { ...newValues, file: newFile };
                         console.log('new patient', newPatient);
 
                         socket.emit('waiting_patients:create', newPatient);
@@ -99,7 +98,7 @@ const PatientRegister = () => {
             }
             else {
                 // no image
-                socket.emit('waiting_patients:create', patient);
+                socket.emit('waiting_patients:create', newValues);
                 dispatch(notifyInfo('Đã đăng ký khám chữa bệnh'));
                 setTimeout(() => {
                     dispatch(hideNotify());

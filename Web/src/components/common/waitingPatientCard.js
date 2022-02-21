@@ -48,7 +48,7 @@ const WaitingPatientCard = ({ onClick, patient, finishedId }) => {
                         </div>
                         <h3 className="fs-600 mt-2">{patient.name}</h3>
                         {patient.gender && <p>{getGender(patient.gender)}</p>}
-                        {patient.age && <p>Tuổi: {patient.age}</p>}
+                        {<p>Tuổi: {patient.age > 0 ? patient.age : '...'}</p>}
                         {patient.score && <p className="mb-1">Tình trạng: {patient.score}</p>}
 
                     </div>
@@ -63,8 +63,8 @@ const WaitingPatientCard = ({ onClick, patient, finishedId }) => {
                 >
                     <Btn
                         noShadow={true} fontSize="fs-10"
-                        title={finishedId === patient._id ? 'Chẩn đoán xong' : 'Đang chẩn đoán'}
-                        bgColor={finishedId === patient._id ? 'bg-green' : 'bg-red'}
+                        title={finishedId ? 'Chẩn đoán xong' : 'Đang chẩn đoán'}
+                        bgColor={finishedId ? 'bg-green' : 'bg-red'}
                         loop={true}
                         noHover={true}
                     />
@@ -72,7 +72,16 @@ const WaitingPatientCard = ({ onClick, patient, finishedId }) => {
                 </div>
             }
 
-            {_.isEmpty(patient) && <p className="fs-16 fw-500 ml-2">Chưa có bệnh nhân nào...</p>}
+            {_.isEmpty(patient) &&
+                <div>
+                    <p
+                        className="bg-green text-center p-1"
+                        style={{ width: '100%', }}
+                    >
+                        Chưa có bệnh nhân nào!
+                    </p>
+                </div>
+            }
 
         </div >
     );

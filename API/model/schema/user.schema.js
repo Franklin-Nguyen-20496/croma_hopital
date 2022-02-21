@@ -2,10 +2,14 @@
 const mongoose = require('mongoose');
 const config = require('config')
 const bcrypt = require('bcrypt');
+const { v4: uuidV4 } = require('uuid');
 
 const Schema = mongoose.Schema;
 const userSchema = new Schema({
-
+    id: {
+        type: String,
+        default: () => { return uuidV4() },
+    },
     name: {
         type: String,
         required: [true, "Please fill a full name"],
@@ -37,8 +41,11 @@ const userSchema = new Schema({
     },
     file: {
         type: String,
-    }
-})
+    },
+    patientsID: {
+        type: [String],
+    },
+});
 
 // hash password
 
@@ -52,6 +59,6 @@ userSchema.pre('save', async function save(next) {
     catch (err) {
         return next(err);
     }
-})
+});
 
 module.exports = userSchema;

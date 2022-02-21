@@ -1,7 +1,7 @@
-import React, { useState, memo, useEffect, useRef } from 'react';
+import React, { useState, memo, useEffect, useRef, forwardRef } from 'react';
 import clsx from 'clsx';
 
-const Btn = (props) => {
+const Btn = forwardRef((props, ref) => {
     const {
         type,
         title,
@@ -15,12 +15,13 @@ const Btn = (props) => {
         noHover,
         bgColor,
         loop,
-        disable
+        disable,
+        selected,
+        moreClass
     } = props;
     const element = useRef();
     // scale when click btn
     const [active, setActive] = useState('');
-    console.log('btn re-render');
     useEffect(() => {
         let timer;
         const handleElement = () => {
@@ -39,8 +40,10 @@ const Btn = (props) => {
 
     return (
         <div
-            onClick={onClick}
-            className="br-100"
+            className={clsx('br-100', moreClass)}
+            style={{ width: 'auto' }}
+            ref={ref}
+        // key={key}
         >
             <button
                 type={type ? type : 'button'}
@@ -58,14 +61,17 @@ const Btn = (props) => {
                         marginBottom ? `mb-${marginBottom}` : '',
                         loop ? 'animation-loop' : '',
                         disable ? 'disable' : '',
+                        selected ? 'text-dark' : '',
                     )}
                 ref={element}
+                onClick={onClick}
+                style={{ minWidth: '8.8rem' }}
             >
                 {title ? title : 'button'}
             </button>
         </div>
 
     );
-}
+})
 
 export default memo(Btn);

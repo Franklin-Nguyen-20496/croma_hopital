@@ -6,9 +6,9 @@ import io from 'socket.io-client';
 import _ from 'lodash';
 import { PDFViewer } from '@react-pdf/renderer';
 
-import WaitingPatientCard from '../../common/waitingPatientCard';
-import actions from '../../../redux/actions';
-import PDFPreview from '../../common/PDFPreview';
+import WaitingPatientCard from '../../../common/waitingPatientCard';
+import actions from '../../../../redux/actions';
+import PDFPreview from '../../../common/PDFPreview';
 import AddDiseaseForm from './AddDiseaseForm';
 
 const { setSelectedPatient } = actions;
@@ -25,7 +25,7 @@ const WaitingPatientCheck = () => {
     const dispatch = useDispatch();
     const patient = useSelector(state => state.waitingPatients.selectedPatient);
 
-    // get selected patient whenreload
+    // get selected patient when reload
     useEffect(() => {
         axios({
             method: 'get',
@@ -47,15 +47,17 @@ const WaitingPatientCheck = () => {
         const { disease, score } = values;
         if (disease && score) {
             const newPatient = { ...patient, ...values };
-            setProfile(newPatient)
+            setProfile(newPatient);
         }
     }
 
     const handlePatientSubmit = (newValues, { resetForm }) => {
         if (patient._id) {
             const values = { ...patient, ...newValues }
+            console.warn('handle submit finished', values);
             socket.emit('waiting_patients:finished', values);
             dispatch(setSelectedPatient(values));
+            setProfile({});
             resetForm();
         }
     }
@@ -71,7 +73,10 @@ const WaitingPatientCheck = () => {
                             className="mb-2"
                             style={{ maxWidth: '20rem' }}
                         >
-                            <WaitingPatientCard patient={patient} finishedId={finishedId} />
+                            <WaitingPatientCard
+                                patient={patient}
+                                finishedId={finishedId === patient._id}
+                            />
                         </div>
                         <div className="p-2">
                             <AddDiseaseForm

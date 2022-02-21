@@ -15,17 +15,15 @@ const SchemaParams = () => {
     const [users3, setUsers3] = useState([]);
 
     useEffect(() => {
-        const users2 = users.filter(value => {
+        const list2 = users.filter(value => {
             return value.position === classId && value.role === 2;
         })
-        setUsers2(users2)
-        const users3 = users.filter(value => {
+        setUsers2(list2)
+        const list3 = users.filter(value => {
             return value.position === classId && value.role === 3
         })
-        setUsers3(users3)
+        setUsers3(list3)
     }, [users, classId])
-
-
 
     return (
         <div className={clsx('bg-gray big-shadow br-20 mt-2')}>

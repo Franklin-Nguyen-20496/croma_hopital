@@ -6,7 +6,7 @@ import { SET_ACCOUNT, CLEAR_ACCOUNT } from '../types/account.types';
 const initialState = {
     access_token: JSON.parse(localStorage.getItem('token')) || '',
     refresh_token: JSON.parse(localStorage.getItem('refresh_token')) || '',
-    account: JSON.parse(localStorage.getItem('profile')) || {},
+    account: JSON.parse(localStorage.getItem('profile')) || '',
 }
 
 const accountReducer = (state = initialState, action) => {
@@ -20,7 +20,7 @@ const accountReducer = (state = initialState, action) => {
             localStorage.clear();
             axios.defaults.headers.common['Authorization'] = '';
             return {
-                account: {},
+                account: '',
                 token: '',
                 refresh_token: '',
             };

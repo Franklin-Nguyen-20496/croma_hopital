@@ -4,9 +4,12 @@ import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import clsx from 'clsx';
 
 const SelectItem = (props) => {
-    const { icon,
+    const {
+        icon,
         title,
         onClick,
+        borderRadius,
+        moreClass,
         selected,
     } = props;
 
@@ -14,17 +17,26 @@ const SelectItem = (props) => {
         <div
             className={
                 clsx('btn-hover-dark fw-500 pr-2 pl-2',
-                    (title === selected) ? 'text-black' : 'text-white')
+                    selected ? 'text-black' : 'text-white',
+                    borderRadius ? `br-${borderRadius}` : '',
+                    moreClass,
+                )
             }
             title={title}
             style={styles}
             onClick={onClick}
         >
-            <p
-                className="mr-2 fs-18"
-            >
-                <FontAwesomeIcon icon={icon ? icon : faEllipsisH} />
-            </p>
+            {icon &&
+                <div
+                    style={{
+                        height: '40px',
+                        width: '24px',
+                    }}
+                    className="d-flex align-items-center justify-content-center mr-1 fs-18"
+                >
+                    <FontAwesomeIcon icon={icon ? icon : faEllipsisH} />
+                </div>
+            }
             <p
                 style={stylesIcon}
             >
@@ -43,6 +55,7 @@ const styles = {
     height: '4rem',
     width: '100%',
     transition: 'all 0.3s ease-out',
+    cursor: 'pointer'
 }
 
 const stylesIcon = {

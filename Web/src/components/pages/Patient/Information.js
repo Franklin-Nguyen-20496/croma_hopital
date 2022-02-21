@@ -14,6 +14,18 @@ import actions from '../../../redux/actions';
 
 const { notifyInfo, hideNotify } = actions;
 
+//function check gender number return string if gender
+const checkGender = (number) => {
+    switch (number) {
+        case 1:
+            return 'Nam';
+        case 2:
+            return 'Nữ'
+        default:
+            return '...';
+    }
+}
+
 const Information = () => {
     const dispatch = useDispatch();
     const [patient, setPatient] = useState({});
@@ -117,9 +129,9 @@ const Information = () => {
                         </div>
                         <h3 className="fs-16 fw-600">Bệnh nhân {patient.name}</h3>
                         <p>Mức độ bệnh: {patient.score}</p>
-                        {patient.age && (<p>Tuổi: {patient.age}</p>)}
-                        {patient.gender && (<p>Giới tính: {patient.gender}</p>)}
-                        {patient.antecedent && (<p>Tiền sử bệnh: {patient.antecedent}</p>)}
+                        <p>Tuổi: {patient.age > 0 ? patient.age : '...'}</p>
+                        <p>Giới tính: {checkGender(patient.gender)}</p>
+                        {patient.antecedent && <p>Tiền sử bệnh: {patient.antecedent}</p>}
                         <p>{patient.covid19 ? 'Đã xét nghiệm covid19' :
                             'Chưa xét nghiệm covid19'
                         }</p>

@@ -4,19 +4,22 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-import ErrorMsg from '../../common/ErrorMessage';
-import Btn from '../../common/Btn';
+import ErrorMsg from '../../../common/ErrorMessage';
+import Btn from '../../../common/Btn';
 
 const AddDiseaseForm = ({ handlePatientSubmit, handleFinishedProfile }) => {
     const formik = useFormik({
         initialValues: {
+            position: '',
             disease: '',
             score: '',
         },
         validationSchema: yup.object().shape({
+            position: yup.number()
+                .required('Nhập loại bệnh của bệnh nhân'),
             disease: yup.string()
                 .max(32, 'Tênh bệnh tối đa 32 kí tự!')
-                .required('Nhập loại bệnh của bệnh nhân'),
+                .required('Nhập tên bệnh của bệnh nhân'),
             score: yup.number()
                 .min(1, 'Thang đo mức độ từ 1-6')
                 .max(6, 'Thang đo mức độ bệnh từ 1-6')
@@ -27,6 +30,7 @@ const AddDiseaseForm = ({ handlePatientSubmit, handleFinishedProfile }) => {
         onSubmit: (values, { resetForm }) => {
 
             const newValues = {
+                position: Number(values.position),
                 disease: values.disease,
                 score: Number(values.score)
             }
@@ -39,7 +43,24 @@ const AddDiseaseForm = ({ handlePatientSubmit, handleFinishedProfile }) => {
         <>
             <form onSubmit={formik.handleSubmit}>
 
-                <label htmlFor="name">Loại bệnh:</label>
+                <label htmlFor="position">Loại bệnh:</label>
+                <select
+                    id="position"
+                    type="number"
+                    {...formik.getFieldProps('position')}
+                >
+                    <option value={0} label="Loại bệnh..." />
+                    <option value={1} label="Chấn thương" />
+                    <option value={2} label="Hô hấp" />
+                    <option value={3} label="Tim mạch" />
+                </select>
+
+                {formik.touched.position && formik.errors.position ? (
+                    <ErrorMsg >{formik.errors.position}</ErrorMsg>
+                ) : null}
+                <hr className="mb-2" />
+
+                <label htmlFor="name">Tên bệnh:</label>
                 <input
                     id="disease"
                     type="text"

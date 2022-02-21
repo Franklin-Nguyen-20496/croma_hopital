@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 // import Header from './Header';
@@ -23,13 +23,6 @@ const buttons = [
 const Patient = () => {
     const navigate = useNavigate();
 
-    const [selected, setSelected] = useState();
-
-    useEffect(() => {
-        const btn = buttons.find(btn => btn.navigate === window.location.pathname);
-        setSelected(btn.id);
-    }, [])
-
     return (
         <div>
             <Navigator>
@@ -39,12 +32,11 @@ const Patient = () => {
                             <NavigatorItem key={button.id}>
                                 <BtnNav
                                     onClick={() => {
-                                        navigate(button.navigate);
-                                        setSelected(button.id)
+                                        navigate(button.navigate)
                                     }}
                                     title={button.title}
                                     marginLeft="2"
-                                    selected={selected === button.id ? true : false}
+                                    selected={button.navigate === window.location.pathname}
                                 />
                             </NavigatorItem>
                         )

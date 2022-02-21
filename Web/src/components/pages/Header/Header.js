@@ -5,22 +5,26 @@ import Container from '@mui/material/Container';
 import { useSelector, useDispatch } from 'react-redux';
 import clsx from 'clsx';
 import axios from 'axios';
+import _ from 'lodash';
 
 import styles from './Header.module.scss';
 import Navbar from './Navbar';
 import { faBars, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import checkPosition from '../../../helper/checkPosition.helper';
+import userRoleHelper from '../../../helper/user.role.helper';
 import actions from '../../../redux/actions';
-const { clearAccount, resetUsers, notifyInfo } = actions;
+import { checkNavigation } from '../../../helper/navigate.helper';
+const { clearAccount, resetUsers, notifyInfo, hideNotify } = actions;
 
 const Header = () => {
-    console.log('header render');
+    console.log('header rerender');
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const profile = useSelector(state => state.account.account);
     const defaultImg = process.env.REACT_APP_DEFAULT_IMG;
 
     const [showNav, setShowNav] = useState(false);
-    const [selected, setSelected] = useState('');
     const account = useSelector((state) => state.account.account ? state.account.account : {});
 
     const handleToggleClick = () => {
@@ -28,10 +32,7 @@ const Header = () => {
         setShowNav(!showNav);
     }
 
-    const handleSelectItem = (e) => {
-        const value = e.target.textContent;
-        console.log('value', value);
-        setSelected(value);
+    const handleSelectItem = () => {
         setShowNav(false);
     }
 
@@ -54,7 +55,7 @@ const Header = () => {
                 dispatch(notifyInfo(res.data.message));
                 axios.defaults.headers.common['Authorization'] = 'bearer ';
                 setTimeout(() => {
-                    dispatch(notifyInfo(''))
+                    dispatch(hideNotify())
                 }, 4000)
                 localStorage.clear();
                 navigate('/login');
@@ -69,13 +70,21 @@ const Header = () => {
 
         <div className={styles.header}>
 
-
             <Container>
 
                 <div
                     className={styles.headerContainer}
                 >
-                    <Link to="/">
+
+                    {!_.isEmpty(profile) &&
+                        <p
+                            className={clsx('fs-16 text-white ml-5', styles.text)}
+                            title={`${userRoleHelper(profile.role)} - ${profile.role <= 3 && checkPosition(profile.position)}`}
+                        >
+                            {userRoleHelper(profile.role)}{(profile.role <= 3 && profile.role > 1) && ` - ${checkPosition(profile.position)}`}
+                        </p>}
+
+                    <Link to={profile.role ? checkNavigation(profile.role) : '/'}>
                         <div className={styles.headerHome}>
                             <div
                                 className={clsx('text-black', 'fs-20', 'br-full')}
@@ -94,18 +103,22 @@ const Header = () => {
 
                     {showNav && <div onClick={handleCloseNav} className={styles.headerNavbarDrop}></div>}
 
+
                     <div onClick={handleToggleClick} className={clsx('fs-18 text-white', styles.account)}>
-                        {account.name === undefined ? <FontAwesomeIcon className="btn-hover-scale" icon={faBars} /> : (
-                            <div className="btn-hover-scale d-flex align-items-center">
-                                <p className="fs-14">
-                                    <FontAwesomeIcon icon={faUser} />
-                                </p>
-                                <p
-                                    className="fs-16 ml-1"
-                                    style={{ zIndex: '100' }}
-                                >{account.name}
-                                </p>
-                            </div>)
+                        {account.name === undefined ?
+                            <FontAwesomeIcon className="btn-hover-scale" icon={faBars} />
+                            :
+                            (
+                                <div className="btn-hover-scale d-flex align-items-center">
+                                    <p className="fs-14">
+                                        <FontAwesomeIcon icon={faUser} />
+                                    </p>
+                                    <p
+                                        className={clsx('fs-16 ml-1', styles.text)}
+                                        style={{ zIndex: '100' }}
+                                    >{account.name}
+                                    </p>
+                                </div>)
                         }
                     </div>
 
@@ -113,10 +126,8 @@ const Header = () => {
             </Container>
 
 
-
             <Navbar
                 handleSignOut={handleSignOut}
-                selected={selected}
                 selectedItem={handleSelectItem}
                 display={showNav}
             />

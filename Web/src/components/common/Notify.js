@@ -7,8 +7,6 @@ import * as styles from './notify.module.scss';
 
 const Notify = () => {
 
-    console.log('render Notify components');
-
     const { color, message, slide } = useSelector(state => state.notify);
 
     return (

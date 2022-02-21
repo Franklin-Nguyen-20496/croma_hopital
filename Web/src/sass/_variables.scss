@@ -8,10 +8,11 @@ $error: #d32752;
 $info: #f6c31c;
 $topic: #2FACD7;
 $gray: #C4C4C4;
-$dark: rgba(0, 0, 0, 0.6);
+$dark: #303030;
 $light: #d2d2d2;
 $pink: #ce98ee;
-$brown: #e7f5f3;
+$brown: #E2F0EF;
+$green: #22B27F;
 
 // color palette
 $color: (
@@ -29,7 +30,7 @@ $color: (
   "pink": $pink,
   "gray": #8d8d8d,
   "dark": $dark,
-  "light": #080808,
+  "light": #303030,
   "black": black,
   "white": white,
 );
@@ -37,11 +38,11 @@ $color: (
 // btn color button
 $topic_colors: (
   "topic": $topic,
-  "comp-topic": complement($topic) ,
+  "second-topic": #00E4D7 ,
   "gray": $gray,
-  "red": #e61919,
+  "red": #d32752,
   "yellow": #e6e619,
-  "green": #19e635,
+  "green": #22B27F,
   "pink": $pink,
   "dark": $dark,
   "light": $light,

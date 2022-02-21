@@ -4,3 +4,4 @@ export const SET_HIGHEST_PATIENT = 'set_highest_patient';
 export const SET_SEARCH_INFO = 'set_search_info';
 export const SET_SELECTED_PATIENT = 'set_selected_patient';
 export const SET_FINISHED_ID = 'set_finish_id';
+export const DELETE_ONE_WAITING_PATIENT = 'delete_one_waiting_patient';

@@ -16,6 +16,7 @@ const Navigator = ({ children }) => {
                 left: '0'
             }}
         >
+            <div className="mb-3 pb-2"></div>
             {children}
         </div>
     );

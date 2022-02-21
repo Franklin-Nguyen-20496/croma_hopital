@@ -1,9 +1,10 @@
 import React from 'react';
+import clsx from 'clsx';
 
-const ErrorMsg = ({ children }) => {
+const ErrorMsg = ({ children, moreClass }) => {
 
     return (
-        <div className="error fs-12">{children}</div>
+        <div className={clsx('text-red fs-12', moreClass)}>{children}</div>
     );
 }
 

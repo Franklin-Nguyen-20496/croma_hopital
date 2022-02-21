@@ -8,14 +8,29 @@ const Home = () => {
 
     return (
         <div>
-            <h1 className="fs-18 fw-600 text-dark mb-1">Trang chủ</h1>
+            <h1 className="fs-20 fw-600 text-dark text-center mb-2">TRANG CHỦ BỆNH VIỆN CROMA</h1>
             <div className="row">
-                <Btn title="Giám đốc" marginRight="2" onClick={() => navigate('/admin')} />
-                <Btn title="Bệnh nhân" marginRight="2" onClick={() => navigate('/patient')} />
-                <Btn title="Điều phối" marginRight="2" onClick={() => navigate('/coordinator')} />
-                <Btn title="Bác sĩ" marginRight="2" onClick={() => navigate('/doctor')} />
+                <div className="col-12 ">
+                    <div className="d-flex justify-content-center">
+                        <Btn
+                            title="Đăng ký khám bệnh"
+                            marginBottom="2"
+                            onClick={() => navigate('/patient')}
+                        />
+                    </div>
+
+                </div>
+                <div className="col-12 ">
+                    <div className="d-flex justify-content-center">
+                        <Btn
+                            title="Đăng nhập"
+                            marginBottom="2"
+                            onClick={() => navigate('/login')}
+                        />
+                    </div>
+                </div>
+
             </div>
-            <hr className="pb-4 pt-4" />
 
         </div>
     );

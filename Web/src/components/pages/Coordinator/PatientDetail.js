@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import _ from 'lodash';
+// import _ from 'lodash';
 import DetailItem from './DetailItem';
 
 const PatientDetail = () => {

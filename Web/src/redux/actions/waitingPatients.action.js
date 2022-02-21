@@ -2,7 +2,8 @@ import {
     SET_ALL,
     SET_HIGHEST_PATIENT,
     SET_SEARCH_INFO, SET_SELECTED_PATIENT,
-    SET_FINISHED_ID
+    SET_FINISHED_ID,
+    DELETE_ONE_WAITING_PATIENT
 } from '../types/waitingPatients.types';
 
 export const setAllWaitingPatients = (data) => {
@@ -36,6 +37,13 @@ export const setSelectedPatient = (patient) => {
 export const setFinishedId = (id) => {
     return {
         type: SET_FINISHED_ID,
+        payload: id,
+    }
+}
+
+export const deleteOneWaitingPatient = (id) => {
+    return {
+        type: DELETE_ONE_WAITING_PATIENT,
         payload: id,
     }
 }

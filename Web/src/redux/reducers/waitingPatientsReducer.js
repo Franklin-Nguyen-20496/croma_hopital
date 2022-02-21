@@ -4,7 +4,8 @@ import {
     SET_HIGHEST_PATIENT,
     SET_SEARCH_INFO,
     SET_SELECTED_PATIENT,
-    SET_FINISHED_ID
+    SET_FINISHED_ID,
+    DELETE_ONE_WAITING_PATIENT
 } from '../types/waitingPatients.types';
 
 const initialState = {
@@ -46,7 +47,13 @@ const waitingPatientsReducer = (state = initialState, action) => {
                 ...state,
                 finishedId: action.payload
             }
-
+        case DELETE_ONE_WAITING_PATIENT:
+            console.log('redux payload delete on waiting patient', action.payload)
+            const newListDelete = [...state.list].filter(id => id !== action.payload)
+            return {
+                ...state,
+                list: newListDelete,
+            }
         default: return state;
     }
 }

@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { } from 'react';
 import clsx from 'clsx';
 
 import UserItem from '../../../common/UserItem';

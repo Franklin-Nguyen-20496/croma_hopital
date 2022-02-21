@@ -1,8 +1,13 @@
 'use strict';
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const { v4: uuidV4 } = require('uuid');
 
 const waitingPatientSchema = new Schema({
+    id: {
+        type: String,
+        default: () => { return uuidV4() },
+    },
     name: {
         type: String,
         required: [true, "Please fill a full name"],
@@ -18,18 +23,23 @@ const waitingPatientSchema = new Schema({
     },
     age: {
         type: Number,
+        default: () => { return 0 },
     },
     gender: {
         type: Number,
+        default: () => { return 0 },
     },
     antecedent: {
         type: String,
+        default: '',
     },
     covid19: {
-        type: String,
+        type: Boolean,
+        default: '',
     },
     file: {
         type: String,
+        default: '',
     },
     selected: {
         type: Boolean,

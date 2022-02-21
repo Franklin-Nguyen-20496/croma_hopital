@@ -12,7 +12,7 @@
     &Container {
         position: relative;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: center;
         height: 4.7rem;
     }
@@ -64,6 +64,13 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+}
+
+.text {
+    line-clamp: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 @keyframes navbar-slide {

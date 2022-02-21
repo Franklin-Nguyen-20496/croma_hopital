@@ -44,12 +44,15 @@ const usersReducer = (state = initialState, action) => {
             }
         }
         case UPDATE_USER: {
-            const id = action.payload._id
-            const list = state.list.filter((user) => user._id !== id);
-            const newList = [...list, action.payload];
+            const listUpdate = [...state.list].map(item => {
+                if (item.id === action.payload.id) {
+                    return action.payload
+                }
+                else return item
+            })
             return {
                 ...state,
-                list: newList,
+                list: listUpdate,
             }
         }
         case DELETE_USER: {

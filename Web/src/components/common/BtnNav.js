@@ -40,7 +40,13 @@ const BtnNav = (props) => {
                         marginRight ? `mr-${marginRight}` : '',
                         selected ? 'text-dark' : 'shadow',
                     )}
-
+                style={{
+                    width: '164px',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                }}
+                title={title ? title : 'button'}
                 ref={element}
             >
                 {title ? title : 'button'}

@@ -4,7 +4,7 @@
         "SALT_ROUNDS": 10
     },
     "db": {
-        "URI": "mongodb+srv://root:root@cluster0.efdlw.mongodb.net/croma",
+        "URI": "mongodb://localhost:27017/croma",
         "options": {
             "autoIndex": true,
             "useCreateIndex": true,
@@ -15,7 +15,7 @@
     "jwt": {
         "SECRET_KEY": "secret_key"
     },
-    "password": "0363011503",
+    "password": "12345678",
     "role": {
         "ADMIN": 1,
         "DEAN": 2,

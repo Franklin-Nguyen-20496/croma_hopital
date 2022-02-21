@@ -21,7 +21,7 @@ const UpdateUser = () => {
     })
     useEffect(() => {
         dispatch(setPositionUpdateUser(updateRef.current.offsetTop));
-    }, [isUpdateUser])
+    }, [isUpdateUser, dispatch])
 
     return (
         <div

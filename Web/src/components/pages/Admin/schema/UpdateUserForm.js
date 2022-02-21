@@ -10,7 +10,7 @@ import { removeEmptyValues } from '../../../../helper/object';
 import PreviewUpdateImg from './PreviewUpdateImg';
 import Btn from '../../../common/Btn';
 import actions from '../../../../redux/actions';
-const { updateUser, notifyInfo, notifyWarn, setUpdateFalse, hideNotify } = actions;
+const { updateUser, notifyInfo, setUpdateFalse, hideNotify } = actions;
 
 const UpdateUserForm = ({ user }) => {
 
@@ -96,7 +96,7 @@ const UpdateUserForm = ({ user }) => {
                     console.log('Khong cap nhat anh');
                     await axios({
                         method: 'PUT',
-                        url: `users/update/${user._id}`,
+                        url: `/users/update/${user.id}`,
                         headers: { 'Content-Type': 'application/json' },
                         data: newValues
                     })
@@ -143,7 +143,7 @@ const UpdateUserForm = ({ user }) => {
                             console.log('newUser', newUser2);
                             axios({
                                 method: 'put',
-                                url: `users/update/${user._id}`,
+                                url: `users/update/${user.id}`,
                                 headers: { 'Content-Type': 'application/json' },
                                 data: newUser2,
                             })

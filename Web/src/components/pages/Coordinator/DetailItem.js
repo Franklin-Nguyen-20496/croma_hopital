@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Switch, FormControlLabel, FormLabel } from '@mui/material';
+import { Switch, FormLabel } from '@mui/material';
 
 const DetailItem = ({ title, checked }) => {
     return (

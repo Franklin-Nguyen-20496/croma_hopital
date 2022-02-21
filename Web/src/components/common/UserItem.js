@@ -33,7 +33,7 @@ const UserItem = (props) => {
         const handleDeleteUser = () => {
             axios({
                 method: 'delete',
-                url: `/users/delete/${user._id}`,
+                url: `/users/delete/${user.id}`,
             })
                 .then(res => {
                     console.log('res.data.message', res.data.message);
@@ -41,13 +41,13 @@ const UserItem = (props) => {
                     setTimeout(() => {
                         dispatch(notifyInfo(''));
                     }, 4000);
-                    dispatch(deleteUser(user._id));
+                    dispatch(deleteUser(user.id));
                 })
                 .catch(err => console.log(err));
         }
 
         deleteBtn.current.addEventListener('click', handleDeleteUser)
-    }, [])
+    }, [dispatch, user.id])
 
     useEffect(() => {
 

@@ -4,6 +4,10 @@
     color: $val;
   }
 
+  .border-#{$key} {
+    border: 1px solid $val;
+  }
+
   .bg-#{$key} {
     background-color: $val;
   }

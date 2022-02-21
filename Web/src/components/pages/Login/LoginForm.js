@@ -6,8 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import Btn from '../../common/Btn';
+import { checkNavigation } from '../../../helper/navigate.helper';
 import actions from '../../../redux/actions';
 const { notifyInfo, notifyError, setAccount, hideNotify } = actions;
+
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -52,7 +54,8 @@ const LoginForm = () => {
                     setTimeout(() => {
                         dispatch(hideNotify())
                     }, 4000);
-                    navigate('/');
+                    const link = checkNavigation(data.role);
+                    navigate(link);
                 })
                 .catch(err => {
                     console.log('err', err);
@@ -75,7 +78,6 @@ const LoginForm = () => {
                     id="email"
                     type="text"
                     placeholder="Email"
-
                     {...formik.getFieldProps('email')}
                 />
                 {formik.touched.email && formik.errors.email ? (

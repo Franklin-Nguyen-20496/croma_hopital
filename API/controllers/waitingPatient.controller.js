@@ -18,6 +18,7 @@ class WaitingPatientsController {
                 })
                 await redis.zAdd('waiting', list, config.redis_option);
                 const data = await redis.zRange('waiting', 0, -1);
+                console.log('data on redis', data);
                 return {
                     message: 'success',
                     data: data.reverse(),
@@ -30,6 +31,7 @@ class WaitingPatientsController {
             }
 
         } catch (error) {
+            console.log(error);
             return { message: 'Có lỗi xảy ra, vui lòng kiểm tra lại!' }
         }
     }
@@ -91,16 +93,13 @@ class WaitingPatientsController {
 
             const result = await db.waitingPatients.findOneAndDelete(id);
             console.log('update patient', result);
-            const {
-                name, phone, score, age, gender, antecedent, covid19, file
-            } = result;
 
             if (!result) {
                 return { message: 'Bệnh nhân không tồn tại!' }
             }
             else {
                 const patient = {
-                    name, phone, score, age, gender, antecedent, covid19, file, ...data
+                    ...result, ...data
                 };
                 console.log('patient', patient);
                 const newPatient = await db.patients.create(patient);
@@ -206,7 +205,6 @@ class WaitingPatientsController {
             if (newPatient) {
                 const newData = { ...newPatient, ...data };
                 const result = await db.patients.create(newData);
-                await redis.rPush('patients', JSON.parse(JSON.stringify(result._id)));
                 return {
                     message: 'success',
                     data: result,

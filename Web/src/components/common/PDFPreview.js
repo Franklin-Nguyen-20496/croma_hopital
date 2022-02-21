@@ -100,8 +100,8 @@ const PDFPreview = ({ patient }) => {
 
                 <View style={styles.content}>
                     <View style={styles.contentLeft}>
-                        <Text style={styles.text}>Giới tính: {realGender ? realGender : '......'}</Text>
                         <Text style={styles.text}>Tình trạng: {score ? score : '.............'}</Text>
+                        <Text style={styles.text}>Giới tính: {realGender ? realGender : '.........'}</Text>
                         <Text style={styles.text}>SĐT: {phone ? phone : '.....................'}</Text>
                     </View>
                     <View style={styles.contentRight}>
